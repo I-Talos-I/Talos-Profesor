@@ -1,6 +1,8 @@
-# CLIProfessor (Talos Profesor)
+# CLI Professor 🎓
 
-CLIProfessor es una API Backend desarrollada en .NET 9 que actúa como un asistente inteligente para la terminal. Utiliza Inteligencia Artificial (Google Gemini) y una arquitectura RAG (Retrieval-Augmented Generation) para sugerir comandos de terminal basados en lenguaje natural, aprendiendo de tus correcciones pasadas.
+> **Repositorio**: [https://github.com/I-Talos-I/Talos-Profesor.git](https://github.com/I-Talos-I/Talos-Profesor.git)
+
+Un asistente de CLI inteligente impulsado por **Google Gemini** y **RAG (Retrieval-Augmented Generation)**. para sugerir comandos de terminal basados en lenguaje natural, aprendiendo de tus correcciones pasadas.
 
 ## 🚀 Características
 
