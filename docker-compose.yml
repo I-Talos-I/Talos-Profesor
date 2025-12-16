@@ -1,0 +1,27 @@
+services:
+  db:
+    image: ankane/pgvector
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: talos_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: src/CLIProfessor.Api/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=talos_db;Username=postgres;Password=password;Ssl Mode=Disable
+      - Gemini__ApiKey=${GEMINI_API_KEY}
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+      - "7277:8080"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
