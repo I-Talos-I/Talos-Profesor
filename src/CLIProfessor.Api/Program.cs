@@ -1,5 +1,6 @@
 using CLIProfessor.Api.Middleware;
 using CLIProfessor.Application.Features.CommandSuggestions.Queries;
+using CLIProfessor.Application.Features.Learning.Commands;
 using CLIProfessor.Domain.Entities;
 using CLIProfessor.Domain.Interfaces;
 using CLIProfessor.Infrastructure.Persistence;
@@ -52,8 +53,18 @@ app.MapPost("/suggest", async (IMediator mediator, [FromBody] SuggestRequest req
 .WithName("GetCommandSuggestion")
 .WithOpenApi();
 
+app.MapPost("/learn", async (IMediator mediator, [FromBody] LearnRequest request) =>
+{
+    var command = new LearnCorrectionCommand(request.OriginalInput, request.CorrectedCommand, request.Explanation);
+    await mediator.Send(command);
+    return Results.Ok(new { Message = "Correction learned successfully" });
+})
+.WithName("LearnCorrection")
+.WithOpenApi();
+
 app.Run();
 
 // Simple DTO for the request body
 public record SuggestRequest(string NaturalLanguageInput, SuggestContext Context);
 public record SuggestContext(string OS, string Shell, string CurrentDirectory);
+public record LearnRequest(string OriginalInput, string CorrectedCommand, string Explanation);

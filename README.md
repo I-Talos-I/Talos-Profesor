@@ -72,6 +72,24 @@ dotnet run --project src/CLIProfessor.Api
 
 La API estará disponible en `https://localhost:7000` (o el puerto configurado).
 
+## 🧠 Aprendizaje (Feedback Loop)
+
+El sistema puede aprender de sus errores. Si la IA sugiere un comando incorrecto, puedes enseñarle la respuesta correcta usando el endpoint `/learn`.
+
+**Ejemplo de uso (cURL):**
+
+```bash
+curl -X POST http://localhost:5016/learn \
+   -H "Content-Type: application/json" \
+   -d '{
+         "originalInput": "crear api",
+         "correctedCommand": "dotnet new webapi -n MiApi",
+         "explanation": "Usa la plantilla webapi para crear una API RESTful."
+       }'
+```
+
+La próxima vez que preguntes "crear api", el sistema recordará esta corrección gracias a su memoria vectorial (RAG).
+
 ## 🐳 Docker (Recomendado)
 
 La forma más fácil de ejecutar la aplicación es usando Docker Compose, ya que configura automáticamente la base de datos y la API.
