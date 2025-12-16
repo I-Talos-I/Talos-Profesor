@@ -22,7 +22,7 @@ Un asistente de CLI inteligente impulsado por **Google Gemini** y **RAG (Retriev
 
 ### 1. Clonar el repositorio
 ```bash
-git clone <url-del-repo>
+git clone https://github.com/I-Talos-I/Talos-Profesor.git
 cd TalosProfesor
 ```
 
